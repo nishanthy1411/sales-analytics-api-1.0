@@ -1,10 +1,10 @@
-package com.hitachids.sales_analytics_api_10;
+package com.hds.sales_analytics_api_10;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class SalesAnalyticsApi10ApplicationTests {
 
 	@Test
 	void contextLoads() {
