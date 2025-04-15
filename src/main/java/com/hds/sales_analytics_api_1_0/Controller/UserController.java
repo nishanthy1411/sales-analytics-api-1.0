@@ -3,7 +3,6 @@ package com.hds.sales_analytics_api_1_0.Controller;
 import com.hds.sales_analytics_api_1_0.Model.LoginRequest;
 import com.hds.sales_analytics_api_1_0.Model.User;
 import com.hds.sales_analytics_api_1_0.Repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
