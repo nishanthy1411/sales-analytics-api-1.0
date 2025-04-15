@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hds</groupId>
-	<artifactId>sales-analytics-api-1-0</artifactId>
+	<artifactId>sales-analytics-api-1.0</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sales-analytics-api-1-0</name>
+	<name>sales-analytics-api-1_0</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>24</java.version>
+		<java.version>21</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

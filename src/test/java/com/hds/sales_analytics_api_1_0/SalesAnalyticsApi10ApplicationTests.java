@@ -1,4 +1,4 @@
-package com.hds.sales_analytics_api_10;
+package com.hds.sales_analytics_api_1_0;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
