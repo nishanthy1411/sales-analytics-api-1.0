@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
 public class UserController {
+
+    private Map<String, Integer> roles;
 
     private final UserRepository userRepository;
 
@@ -25,14 +29,22 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest) {
         Optional<User> user = userRepository.findByEmail(loginRequest.getEmail());
-
+        setRoleData();
         if (user.isPresent() &&
-                user.get().getFirst_name().equals(loginRequest.getPassword())
-              ) {
-            return ResponseEntity.ok(user.get());
+                user.get().getFirst_name().equals(loginRequest.getPassword())) {
+            User loggedUser = user.get();
+            loggedUser.setRole(roles.get(loggedUser.getRole()).toString());
+            return ResponseEntity.ok(loggedUser);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
+    }
+
+    private void setRoleData() {
+        roles = new HashMap<>();
+        roles.put("User", 6179);
+        roles.put("Manager", 9284);
+        roles.put("Admin", 4826);
     }
 }
 
