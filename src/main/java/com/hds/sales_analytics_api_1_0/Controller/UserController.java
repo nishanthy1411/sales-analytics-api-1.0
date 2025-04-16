@@ -23,16 +23,15 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest) {
         Optional<User> user = userRepository.findByEmail(loginRequest.getEmail());
 
         if (user.isPresent() &&
-                user.get().getFirst_name().equals(loginRequest.getPassword()) &&
-                user.get().getRegion().equalsIgnoreCase(loginRequest.getRegion()) &&
-                user.get().getRole().equalsIgnoreCase(loginRequest.getRole())) {
-            return ResponseEntity.ok("Login successful!");
+                user.get().getFirst_name().equals(loginRequest.getPassword())
+              ) {
+            return ResponseEntity.ok(user.get());
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login details");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
 }
