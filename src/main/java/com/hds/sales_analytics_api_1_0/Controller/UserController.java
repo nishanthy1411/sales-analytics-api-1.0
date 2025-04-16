@@ -3,8 +3,12 @@ package com.hds.sales_analytics_api_1_0.Controller;
 import com.hds.sales_analytics_api_1_0.Model.LoginRequest;
 import com.hds.sales_analytics_api_1_0.Model.User;
 import com.hds.sales_analytics_api_1_0.Repository.UserRepository;
+import com.hds.sales_analytics_api_1_0.service.SalesService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import java.util.Optional;
 
 @RestController
@@ -20,11 +25,9 @@ public class UserController {
 
     private Map<String, Integer> roles;
 
-    private final UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest) {
@@ -46,5 +49,6 @@ public class UserController {
         roles.put("Manager", 9284);
         roles.put("Admin", 4826);
     }
+
 }
 
