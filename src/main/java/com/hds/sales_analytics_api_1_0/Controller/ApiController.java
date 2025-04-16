@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -82,5 +83,14 @@ public class ApiController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return ResponseEntity.ok(products);
+    }
+
+    @PostMapping("/user/region")
+    public ResponseEntity<List<User>> getUserRegion(@RequestBody User region) {
+        List<User> regionUsers = userService.getUserByRegion(region.getRegion(), "User");
+        if (!regionUsers.isEmpty()) {
+            return ResponseEntity.ok(regionUsers);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -30,6 +31,11 @@ public class UserService {
         } else {
             return null;
         }
+    }
+
+    public List<User> getUserByRegion(String region, String role) {
+        Optional<List<User>> user = userRepository.findByRegionAndRole(region, role);
+        return user.orElse(null);
     }
 
     private void setRoleData() {
