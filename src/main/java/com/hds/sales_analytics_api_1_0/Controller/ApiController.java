@@ -1,9 +1,11 @@
 package com.hds.sales_analytics_api_1_0.Controller;
 
 import com.hds.sales_analytics_api_1_0.Model.LoginRequest;
+import com.hds.sales_analytics_api_1_0.Model.Products;
 import com.hds.sales_analytics_api_1_0.Model.Sales;
 import com.hds.sales_analytics_api_1_0.Model.User;
 import com.hds.sales_analytics_api_1_0.service.AdminService;
+import com.hds.sales_analytics_api_1_0.service.ProductService;
 import com.hds.sales_analytics_api_1_0.service.SalesService;
 import com.hds.sales_analytics_api_1_0.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -19,11 +21,13 @@ public class ApiController {
     private final SalesService salesService;
     private final UserService userService;
     private final AdminService adminService;
+    private final ProductService productService;
 
-    public ApiController(SalesService salesService, UserService userService, AdminService adminService) {
+    public ApiController(SalesService salesService, UserService userService, AdminService adminService, ProductService productService) {
         this.salesService = salesService;
         this.userService = userService;
         this.adminService = adminService;
+        this.productService = productService;
     }
 
     @PostMapping("/sales")
@@ -69,5 +73,14 @@ public class ApiController {
             return ResponseEntity.ok(user);
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    }
+
+    @GetMapping("/products")
+    public ResponseEntity<List<Products>> getAllProducts() {
+        List<Products> products = productService.getAllProducts();
+        if(products.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return ResponseEntity.ok(products);
     }
 }
