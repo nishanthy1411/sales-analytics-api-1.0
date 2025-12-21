@@ -1,8 +1,0 @@
-services:
-  fastapi:
-    container_name: "rebranding"
-    build:
-      dockerfile: ./Dockerfile
-      context: ./
-    ports:
-      - '8000:8000'
